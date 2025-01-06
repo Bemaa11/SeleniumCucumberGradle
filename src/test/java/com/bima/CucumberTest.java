@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         glue = {"com.bima.stepdef"},
         features = {"src/test/resources/features"},
-        plugin = {"pretty","html:reports/cucumber.html", "json:reports/cucumber.json"}
+        plugin = {"pretty","html:reports/index.html", "json:reports/cucumber.json"}
 )
 public class CucumberTest {
 
