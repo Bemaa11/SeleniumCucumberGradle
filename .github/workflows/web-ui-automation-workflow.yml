@@ -5,29 +5,32 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # download repo
-    - uses: actions/checkout@v4
-    # setup java
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-    # instal browser
-   - name: Setup Firefox
-    uses: browser-actions/setup-firefox@v1.5.2
+      # Download repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    # setup gradlew
-    - name : Setup gradlew
-      run : chomd +X gradlew
+      # Setup Java
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-   # Execute gradle commad for running cucumber test
-   - name : Execute Test
-     run : ./gradlew cucumber
+      # Install browser
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@v1.5.2
+
+      # Setup Gradle Wrapper
+      - name: Setup Gradlew
+        run: chmod +x gradlew
+
+      # Execute Gradle command for running cucumber test
+      - name: Execute Test
+        run: ./gradlew cucumber
